@@ -76,7 +76,7 @@
       add_newline = false;
       format = lib.concatStrings [
         "[](color_orange)"
-        "$username"
+        "$username$hostname"
         "[](bg:color_yellow fg:color_orange)"
         "$directory"
         "[](fg:color_yellow bg:color_aqua)"
@@ -115,7 +115,13 @@
         show_always = true;
         style_user = "bg:color_orange fg:color_fg0";
         style_root = "bg:color_orange fg:color_fg0";
-        format = "[ $user ]($style)";
+        format = "[$user]($style)";
+      };
+      hostname = {
+        ssh_only = true;
+        ssh_symbol = "🐕";
+        style = "bg:color_orange fg:color_fg0";
+        format = "[$ssh_symbol$hostname in ]($style)";
       };
       directory = {
         style = "fg:color_fg0 bg:color_yellow";
