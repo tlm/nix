@@ -6,7 +6,7 @@
     };
   };
 
-  programs.gpg-agent = {
+  services.gpg-agent = {
     enable = false;
   };
 }
