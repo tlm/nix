@@ -50,18 +50,18 @@ pkgs.mkShellNoCC {
   ];
 
   shellHook = ''
-      export GOBIN=''$(mktemp -d -p "" juju-go-path.XXXX)
-      echo "Using temporary GOBIN: ''${GOBIN}"
-      export PATH="''${PATH}:''${GOBIN}"
-      export GOFLAGS
-      export GOFLAGS='-ldflags=-linkmode=external -ldflags=-extldflags=-static'
+    export GOBIN=''$(mktemp -d -p "" juju-go-path.XXXX)
+    echo "Using temporary GOBIN: ''${GOBIN}"
+    export PATH="''${PATH}:''${GOBIN}"
+    export GOFLAGS
+    export GOFLAGS='-ldflags=-linkmode=external -ldflags=-extldflags=-static'
 
-      if [ -z "$IN_ZSH" ]; then
-      export IN_ZSH=1
-      export SHELL=${pkgs.zsh}/bin/zsh
-      exec ${pkgs.zsh}/bin/zsh -i
-      fi
+    if [ -z "$IN_ZSH" ]; then
+    export IN_ZSH=1
+    export SHELL=${pkgs.zsh}/bin/zsh
+    exec ${pkgs.zsh}/bin/zsh -i
+    fi
 
-      echo "Welcome to the Juju development shell!"
+    echo "Welcome to the Juju development shell!"
   '';
 }
