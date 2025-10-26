@@ -3,6 +3,7 @@
   programs.gpg = {
     enable = true;
     settings = {
+      no-autostart = true;
     };
   };
 
