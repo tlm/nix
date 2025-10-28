@@ -47,6 +47,8 @@ pkgs.mkShellNoCC {
     pkgs.shfmt.out
     pkgs.yq-go.out
     pkgs.zsh.out
+    pkgs.zip.out
+    pkgs.unzip.out
   ];
 
   shellHook = ''
