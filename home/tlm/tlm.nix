@@ -29,7 +29,6 @@
     packages = [
       pkgs.go
       pkgs.gopls
-      pkgs.docker
       pkgs.delve
       pkgs.htop
       pkgs.kubectl
