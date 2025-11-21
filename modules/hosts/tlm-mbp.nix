@@ -1,8 +1,11 @@
-{ ... }:
+{ intputs, ... }:
 {
   imports = [
-    ../users/users.nix
+    ../users/tlm.nix
+    ../users/tlm-host-packages.nix
   ];
+
+  nixpkgs.config.allowUnfree = true;
 
   networking = {
     hostName = "tlm-mbp";
