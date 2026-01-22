@@ -1,0 +1,7 @@
+{...}: {
+  perSystem = {...}: {
+    imports = [
+      ./juju.nix
+    ];
+  };
+}
