@@ -9,6 +9,7 @@ pkgs.mkShellNoCC {
 
   propagatedBuildInputs = [
     pkgs.pkgsStatic.sqlite
+    pkgs.pkgsStatic.gcc
   ];
 
   packages = [
