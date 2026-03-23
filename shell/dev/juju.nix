@@ -9,7 +9,6 @@ pkgs.mkShellNoCC {
 
   propagatedBuildInputs = [
     pkgs.pkgsStatic.sqlite
-    pkgs.pkgsStatic.gcc
   ];
 
   packages = [
@@ -17,6 +16,7 @@ pkgs.mkShellNoCC {
     pkgs.pkgsStatic.musl
     pkgs.pkgsStatic.gcc
     pkgs.pkgsStatic.binutils
+    pkgs.gcc
     #pkgs.sqlite
     pkgs.azure-cli.out
     pkgs.awscli2.out
