@@ -1,10 +1,11 @@
 {pkgs, ...}: {
   devshells.go = {
     name = "go";
-    packages = [
-      pkgs.go
-      pkgs.golangci-lint.out
-      pkgs.zsh.out
+    packages = with pkgs; [
+      gci
+      go
+      golangci-lint.out
+      zsh.out
     ];
 
     bash.interactive = ''
