@@ -4,7 +4,9 @@
     packages = with pkgs; [
       gci
       go
+      goimports
       golangci-lint.out
+      gotools
       zsh.out
     ];
 
