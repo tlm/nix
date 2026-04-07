@@ -1,5 +1,12 @@
-{pkgs, ...}: {
-  devShells.juju = pkgs.mkShellNoCC {
+{pkgs, ...}: let
+  golangciLintGo126 = pkgs.golangci-lint.override {
+    buildGoModule =
+      if pkgs ? buildGo126Module
+      then pkgs.buildGo126Module
+      else throw "buildGo126Module is not available in this nixpkgs revision.";
+  };
+in {
+  devshells.juju = pkgs.mkShellNoCC {
     name = "juju-dev";
     packages = [
       pkgs.pkgsStatic.sqlite
@@ -13,7 +20,7 @@
       pkgs.gh.out
       pkgs.gnumake.out
       pkgs.go
-      pkgs.golangci-lint.out
+      golangciLintGo126
       pkgs.gopatch
       pkgs.jq
       pkgs.kubectl.out
