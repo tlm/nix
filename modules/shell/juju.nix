@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   golangciLintGo126 = pkgs.golangci-lint.override {
-    buildGoModule =
+    buildGo125Module =
       if pkgs ? buildGo126Module
       then pkgs.buildGo126Module
       else throw "buildGo126Module is not available in this nixpkgs revision.";
