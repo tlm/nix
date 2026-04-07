@@ -6,7 +6,7 @@
       else throw "buildGo126Module is not available in this nixpkgs revision.";
   };
 in {
-  devshells.juju = pkgs.mkShellNoCC {
+  devShells.juju = pkgs.mkShellNoCC {
     name = "juju-dev";
     packages = [
       pkgs.pkgsStatic.sqlite
@@ -41,9 +41,9 @@ in {
       export GOFLAGS='-ldflags=-linkmode=external -ldflags=-extldflags=-static'
 
       if [ -z "$IN_ZSH" ]; then
-      export IN_ZSH=1
-      export SHELL=${pkgs.zsh}/bin/zsh
-      exec ${pkgs.zsh}/bin/zsh -i
+        export IN_ZSH=1
+        export SHELL=${pkgs.zsh}/bin/zsh
+        exec ${pkgs.zsh}/bin/zsh -i
       fi
 
       echo "Welcome to the Juju development shell!"
