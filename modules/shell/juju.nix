@@ -38,7 +38,9 @@ in {
       echo "Using temporary GOBIN: ''${GOBIN}"
       export PATH="''${PATH}:''${GOBIN}"
       export GOFLAGS
-      export GOFLAGS='-ldflags=-linkmode=external -ldflags=-extldflags=-static'
+      export CGO_LDFLAGS
+      export GOFLAGS='"-ldflags=-extldflags=-static -linkmode=external"'
+      export CGO_LDFLAGS="-L${pkgs.musl}/lib"
 
       if [ -z "$IN_ZSH" ]; then
         export IN_ZSH=1
