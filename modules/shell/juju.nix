@@ -8,30 +8,35 @@
 in {
   devShells.juju = pkgs.mkShellNoCC {
     name = "juju-dev";
-    packages = [
-      pkgs.pkgsStatic.sqlite
-      pkgs.pkgsStatic.musl
-      pkgs.pkgsStatic.gcc
-      pkgs.pkgsStatic.binutils
-      pkgs.azure-cli.out
-      pkgs.awscli2.out
-      pkgs.bash.out
-      pkgs.expect.out
-      pkgs.gh.out
-      pkgs.gnumake.out
-      pkgs.go
-      #golangciLintGo126
-      pkgs.gopatch
-      pkgs.jq
-      pkgs.kubectl.out
-      pkgs.rootlesskit
-      pkgs.shellcheck.out
-      pkgs.shfmt.out
-      pkgs.yq-go.out
-      pkgs.zsh.out
-      pkgs.zip.out
-      pkgs.unzip.out
+    propogatedBuildInputs = with pkgs.pkgsStatic; [
+      sqlite
+      gcc
     ];
+
+    packages =
+      (with pkgs.pkgsStatic; [
+        musl
+        binutils
+        go
+      ])
+      ++ (with pkgs; [
+        azure-cli
+        awscli2
+        bash
+        expect
+        gcc
+        gopatch
+        gh
+        gnumake
+        jq
+        kubectl
+        shellcheck
+        shfmt
+        yq-go
+        zsh
+        zip
+        unzip
+      ]);
 
     shellHook = ''
       export GOBIN=''$(mktemp -d -p "" juju-go-path.XXXX)
@@ -40,7 +45,8 @@ in {
       export GOFLAGS
       export CGO_LDFLAGS
       export GOFLAGS='"-ldflags=-extldflags=-static -linkmode=external"'
-      export CGO_LDFLAGS="-L${pkgs.musl}/lib"
+      export CGO_CFLAGS="-I${pkgs.pkgsStatic.sqlite.dev}/include"
+      export CGO_LDFLAGS="-L${pkgs.pkgsStatic.sqlite.out}/lib -L${pkgs.pkgsStatic.musl}/lib"
 
       if [ -z "$IN_ZSH" ]; then
         export IN_ZSH=1
