@@ -25,7 +25,6 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zed.url = "github:zed-industries/zed/v0.223.4";
   };
 
   outputs = inputs @ {
