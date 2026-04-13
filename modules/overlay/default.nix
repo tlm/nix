@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./1password-cli-beta.nix
     #./bubblewrap.nix
     #./codex.nix
     ./claude.nix
