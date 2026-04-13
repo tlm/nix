@@ -20,6 +20,7 @@
     ]
     ++ lib.optionals withGui [
       ./packages/alacritty.nix
+      ./packages/firefox.nix
     ];
 
   home-manager = {
@@ -37,7 +38,6 @@
         ]
         ++ lib.optionals withGui [
           ./home-manager/1password.nix
-          ./home-manager/firefox.nix
         ];
       programs.home-manager.enable = true;
       targets.darwin.copyApps.enable = lib.mkIf isDarwin true;
