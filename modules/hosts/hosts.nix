@@ -26,9 +26,12 @@ in {
       };
       modules = [
         {
-          nixpkgs.overlays = [
-            self.overlays.default
-          ];
+          nixpkgs = {
+            overlays = [
+              self.overlays.default
+            ];
+            config.allowUnfree = true;
+          };
         }
         inputs.nix-homebrew.darwinModules.nix-homebrew
         {
