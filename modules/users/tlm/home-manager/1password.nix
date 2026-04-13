@@ -6,9 +6,15 @@
     else "~/.1password/agent.sock";
 in {
   home.packages = with pkgs; [
-    _1password-cli
+    _1password-cli-beta
     _1password-gui
   ];
+
+  programs.zsh.initContent = ''
+    if [ -f "$HOME/.config/op/plugins.sh" ]; then
+      source "$HOME/.config/op/plugins.sh"
+    fi
+  '';
 
   programs.ssh = {
     matchBlocks."*" = {
