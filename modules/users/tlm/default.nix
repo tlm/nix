@@ -28,7 +28,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {inherit isDarwin withGui;};
-    users.tlm = {
+    users.tlm = {config, ...}: {
       imports =
         [
           ./home-manager/gpg.nix
@@ -46,6 +46,7 @@
 
         packages = with pkgs;
           [
+            config.programs.home-manager.package
             go
           ]
           ++ lib.optionals withGui [
