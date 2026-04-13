@@ -18,7 +18,7 @@
         nodejs
       ];
 
-      extensions = ["nix" "sql"];
+      extensions = ["nix" "sql" "terraform"];
       mutableUserKeymaps = false;
       mutableUserTasks = false;
       mutableUserSettings = true;
