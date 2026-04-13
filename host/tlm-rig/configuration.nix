@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -11,13 +14,15 @@
     localAddress6 = "fc00::2";
     privateNetwork = true;
     privateUsers = "pick";
-    config =
-      { config, pkgs, ... }:
-      {
-        environment.systemPackages = with pkgs; [
-          unixtools.ping
-        ];
-      };
+    config = {
+      config,
+      pkgs,
+      ...
+    }: {
+      environment.systemPackages = with pkgs; [
+        unixtools.ping
+      ];
+    };
   };
 
   # Bootloader.
@@ -61,9 +66,9 @@
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [ 22 ];
-      allowedUDPPorts = [ ];
-      trustedInterfaces = [ "lxdbr0" ];
+      allowedTCPPorts = [22];
+      allowedUDPPorts = [];
+      trustedInterfaces = ["lxdbr0"];
 
       interfaces = {
         "${config.services.tailscale.interfaceName}" = {
@@ -108,7 +113,7 @@
       "docker"
       "lxd"
     ];
-    packages = with pkgs; [ home-manager ];
+    packages = with pkgs; [home-manager];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHxsBSstfw6+55P/YPS8PyH6m58hxt3q2RK2OP1P6J/2"
@@ -154,7 +159,7 @@
         honor_labels = true;
         static_configs = [
           {
-            targets = [ "localhost:9091" ];
+            targets = ["localhost:9091"];
           }
         ];
       }
@@ -173,13 +178,13 @@
     };
   };
 
-  virtualisation.lxd = {
-    enable = true;
+  #virtualisation.lxd = {
+  #  enable = true;
 
-    # This turns on a few sysctl settings that the LXD documentation recommends
-    # for running in production.
-    recommendedSysctlSettings = true;
-  };
+  #  # This turns on a few sysctl settings that the LXD documentation recommends
+  #  # for running in production.
+  #  recommendedSysctlSettings = true;
+  #};
 
   # This enables lxcfs, which is a FUSE fs that sets up some things so that
   # things like /proc and cgroups work better in lxd containers.
@@ -199,7 +204,7 @@
   };
 
   # kernel module for forwarding to work
-  boot.kernelModules = [ "nf_nat_ftp" ];
+  boot.kernelModules = ["nf_nat_ftp"];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

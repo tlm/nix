@@ -97,7 +97,11 @@
 
   services.tailscale = {
     enable = true;
-    useRoutingFeatures = "none";
+    openFirewall = true;
+    useRoutingFeatures = "both";
+    extraSetFlags = [
+      "--accept-routes=true"
+    ];
   };
 
   virtualisation.docker = {
