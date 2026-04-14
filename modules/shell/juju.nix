@@ -1,10 +1,10 @@
 {pkgs, ...}: let
-  #golangciLintGo126 = pkgs.golangci-lint.override {
-  #  buildGo125Module =
-  #    if pkgs ? buildGo126Module
-  #    then pkgs.buildGo126Module
-  #    else throw "buildGo126Module is not available in this nixpkgs revision.";
-  #};
+  golangciLintGo126 = pkgs.golangci-lint.override {
+    buildGo125Module =
+      if pkgs ? buildGo126Module
+      then pkgs.buildGo126Module
+      else throw "buildGo126Module is not available in this nixpkgs revision.";
+  };
 in {
   devShells.juju = pkgs.mkShellNoCC {
     name = "juju-dev";
@@ -26,7 +26,7 @@ in {
         expect
         gcc
         gopatch
-        golangci-lint
+        golangciLintGo126
         gh
         gnumake
         jq
