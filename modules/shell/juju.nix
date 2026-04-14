@@ -26,6 +26,7 @@ in {
         expect
         gcc
         gopatch
+        golangci-lint
         gh
         gnumake
         jq
